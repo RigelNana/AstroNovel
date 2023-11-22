@@ -70,5 +70,8 @@ public class AstroDates {
     public double getDaysPassed(double julianDays) {
         return  (this.toJulianDays() - julianDays);
     }
+    public double julianCentury() {
+        return (this.toJulianDays() - 2451545.0) / 36525;
+    }
 
 }
