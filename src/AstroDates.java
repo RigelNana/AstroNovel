@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class AstroDates {
     private int year;
     private int month;
@@ -8,6 +10,11 @@ public class AstroDates {
         this.year = year;
         this.month = month;
         this.decimalDays = decimalDays;
+    }
+    public AstroDates(LocalDateTime dateTime) {
+        this.year = dateTime.getYear();
+        this.month = dateTime.getMonthValue();
+        this.decimalDays = dateTime.getDayOfMonth() + dateTime.getHour() / 24.0 + dateTime.getMinute() / 24.0 / 60.0 + dateTime.getSecond() / 24.0 / 60.0 / 60.0;
     }
 
     public AstroDates(int year, int month, int integerDays, int hour, int minutes, double seconds) {

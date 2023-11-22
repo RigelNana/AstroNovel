@@ -83,7 +83,7 @@ public class DatesAlgo {
     public static double twoDatesDifference(double julian1, double julian2) {
         return julian1 - julian2;
     }
-    public static AstroTimes meanSiderealTime(AstroDates astroDates) {
+    public static AstroTimes meanUTSiderealTime(AstroDates astroDates) {
         double T = julianCentury(astroDates);
         double theta = 280.46061837 + 360.98564736629*(astroDates.toJulianDays()-2451545.0) + 0.000387933 * T * T - T * T * T/38710000;
         return thetaToHour(theta);

@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+
 public class AstroTimes {
     private int hour;
     private int minutes;
@@ -7,6 +9,11 @@ public class AstroTimes {
         this.hour = hour;
         this.minutes = minutes;
         this.seconds = seconds;
+    }
+    public AstroTimes(LocalTime time){
+        this.hour = time.getHour();
+        this.minutes = time.getMinute();
+        this.seconds = time.getSecond();
     }
 
     public int getHour() {
