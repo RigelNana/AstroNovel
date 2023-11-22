@@ -88,6 +88,13 @@ public class DatesAlgo {
         double theta = 280.46061837 + 360.98564736629*(astroDates.toJulianDays()-2451545.0) + 0.000387933 * T * T - T * T * T/38710000;
         return thetaToHour(theta);
     }
+    private static double doubleMeanUTSiderealTime(AstroDates astroDates) {
+        double T = julianCentury(astroDates);
+        return 280.46061837 + 360.98564736629*(astroDates.toJulianDays()-2451545.0) + 0.000387933 * T * T - T * T * T/38710000;
+    }
+    public static AstroTimes meanLocalUTSiderealTime(AstroDates astroDates, double longitude) {
+        return thetaToHour(doubleMeanUTSiderealTime(astroDates) + longitude);
+    }
     public static double julianCentury(AstroDates astroDates) {
         return (astroDates.toJulianDays() - 2451545.0) / 36525;
     }
