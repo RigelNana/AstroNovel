@@ -1,3 +1,7 @@
 public interface TimeElapsed {
-    public double daysPassed();
+
+
+    double getDaysPassed(double julian);
+    double getDaysPassed(AstroDates astroDates);
+    double getDaysPassed(JulianDays julianDays);
 }

@@ -1,3 +1,4 @@
+
 public class JulianDays implements TimeElapsed{
     private double julian;
     public JulianDays(double julian){
@@ -39,8 +40,25 @@ public class JulianDays implements TimeElapsed{
         return new AstroDates(y,m,d);
     }
 
-    @Override
-    public double daysPassed() {
+    public double getJulian() {
+        return julian;
+    }
 
+    public void setJulian(double julian) {
+        this.julian = julian;
+    }
+
+    @Override
+    public double getDaysPassed(double julian) {
+        return this.getJulian() - julian;
+    }
+
+    @Override
+    public double getDaysPassed(AstroDates astroDates) {
+        return this.getJulian() - astroDates.julianDays();
+    }
+    @Override
+    public double getDaysPassed(JulianDays julianDays){
+        return this.getJulian() - julianDays.getJulian();
     }
 }

@@ -1,4 +1,4 @@
-public class AstroDates {
+public class AstroDates implements TimeElapsed{
     private int year;
     private int month;
     private int integerDays;
@@ -67,5 +67,20 @@ public class AstroDates {
 
     public void setDecimalDays(double decimalDays) {
         this.decimalDays = decimalDays;
+    }
+
+    @Override
+    public double getDaysPassed(AstroDates astroDates) {
+        return this.julianDays() - astroDates.julianDays();
+    }
+
+    @Override
+    public double getDaysPassed(double julian) {
+        return this.julianDays() - julian;
+    }
+
+    @Override
+    public double getDaysPassed(JulianDays julianDays) {
+        return this.julianDays() - julianDays.getJulian();
     }
 }
