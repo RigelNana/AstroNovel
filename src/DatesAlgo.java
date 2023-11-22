@@ -69,7 +69,7 @@ public class DatesAlgo {
         } else {
             k = 2;
         }
-        return (int) (275 * m / 9) - k * (int) ((m + 9) / 12) + d - 30;
+        return (275 * m / 9) - k * ((m + 9) / 12) + d - 30;
     }
     public static int getNthDayOfTheYear(int year, int month, double day) {
         return getNthDayOfTheYear(new AstroDates(year, month, day));
@@ -83,22 +83,28 @@ public class DatesAlgo {
     public static double twoDatesDifference(double julian1, double julian2) {
         return julian1 - julian2;
     }
-    public static AstroTimes siderealTime(AstroDates astroDates) {
+    public static AstroTimes meanSiderealTime(AstroDates astroDates) {
         double T = julianCentury(astroDates);
         double theta = 280.46061837 + 360.98564736629*(astroDates.toJulianDays()-2451545.0) + 0.000387933 * T * T - T * T * T/38710000;
-
+        return thetaToHour(theta);
     }
     public static double julianCentury(AstroDates astroDates) {
         return (astroDates.toJulianDays() - 2451545.0) / 36525;
     }
-    private AstroTimes thetaToHour(double theta) {
-        while((theta - 360) > 1e-15) {
-            theta -= 360;
+    private static AstroTimes thetaToHour(double theta) {
+        if(theta < 0){
+            while(theta < 0){
+                theta += 360;
+            }
+        }else{
+            while((theta - 360) > 1e-15) {
+                theta -= 360;
+            }
         }
-        int hour = (int) (theta / 15);
-        int minute = (int) (theta / 15 - (int) (theta / 15)) * 60;
-        double second = ((theta / 15 - (int) (theta / 15)) * 60 - (int) (theta / 15 - (int) theta / 15) * 60) * 60;
-        return new AstroTimes(hour,minute,second);
+        int hour = (int)(theta / 15);
+        int minute = (int)((theta - hour * 15) * 4);
+        double second = ((theta - hour * 15) * 4 - minute) * 60;
+        return new AstroTimes(hour, minute, second);
     }
 
 
