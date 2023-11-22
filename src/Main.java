@@ -1,8 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        AstroDates e = new AstroDates(-4712,1,1.5);
-        System.out.println(e.toJulianDays());
-        JulianDays j = new JulianDays(2436116.31);
-        System.out.println(j.JulianDaysToAstroDates().getDecimalDays());
+        AstroDates astroDates = new AstroDates(1910,4,20);
+        AstroDates astroDates1 = new AstroDates(1986,2,9);
+        AstroDates astroDates2 = new AstroDates(1988,4,22);
+        System.out.println(astroDates.getDaysPassed(astroDates1));
+        System.out.println(astroDates2.getNthDayOfTheYear());
     }
 }
